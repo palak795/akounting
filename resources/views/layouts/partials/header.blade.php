@@ -95,6 +95,15 @@
                             <div class="arrow_box"><a class="dropdown-item" href="email-application.html"><i class="ft-user"></i> Email</a><a class="dropdown-item" href="chat-application.html"><i class="ft-mail"></i> Chat</a><a class="dropdown-item" href="project-summary.html"><i class="ft-briefcase"></i> Project Summary </a><a class="dropdown-item" href="full-calender.html"><i class="ft-calendar"></i> Calendar </a></div>
                         </div>
                     </li>
+                    <li class="dropdown d-none d-md-block mr-1"><a class="dropdown-toggle nav-link" id="List-navbar-links" href="#" data-toggle="dropdown"> List</a>
+                    </li> 
+
+                    <li class="dropdown d-none d-md-block mr-1"><a class="dropdown-toggle nav-link" id="Home-navbar-links" href="#" data-toggle="dropdown"> Home</a>
+                    </li>   
+
+                    <li class="dropdown d-none d-md-block mr-1"><a class="dropdown-toggle nav-link" id="apps-navbar-links" href="#" data-toggle="dropdown"> </a>
+                    </li>  
+
                     <li class="nav-item dropdown navbar-search"><a class="nav-link dropdown-toggle hide" data-toggle="dropdown" href="#"><i class="ficon ft-search"></i></a>
                         <ul class="dropdown-menu">
                             <li class="arrow_box">

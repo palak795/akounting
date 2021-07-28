@@ -1,0 +1,10 @@
+model,brand,date_of_manufacture,ram,processor,display,accessories,warranty,description,storage,battery_capacity
+,,,,,,,,,,
+Dell 1300,Dell,2021-05-05,12GB,intel i5,18 inch,"mouse,monitor",4 yrs,details of computer,64GB,180mAH
+sony-via,sony,2020-01-07,12GB,intel i7,20 inch,"keyboard,usb",2 yrs,new computer details,16GB,200mah
+Dell 1301,Dell,2018-09-10,12GB,intel i3,22 inch,"mouse,monitor",1 yrs,details of computer,64GB,180mAH
+sony-via,sony,2020-05-14,12GB,intel i5,24 inch,"keyboard,usb",2 yrs,new computer details,16GB,200mah
+Dell 1302,Dell,2016-01-16,12GB,intel i7,26 inch,"mouse,monitor",4 yrs,details of computer,64GB,180mAH
+sony-via,sony,2020-09-21,12GB,intel i3,28 inch,"keyboard,usb",3 yrs,new computer details,16GB,200mah
+Dell 1303,Dell,2013-05-23,12GB,intel i5,30 inch,"mouse,monitor",2 yrs,details of computer,64GB,180mAH
+sony-via,sony,2019-01-25,12GB,intel i7,32 inch,"keyboard,usb",1 yrs,new computer details,16GB,200mah

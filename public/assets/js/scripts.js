@@ -27,6 +27,7 @@ $("body").on("click", 'a.delete', function () {
     }
   }).catch(swal.noop)
 });
+
 $("body").on("click", 'a.restore', function () {
   var from = $(this).parent('form');
   var form_id = $(this).data("form_id");

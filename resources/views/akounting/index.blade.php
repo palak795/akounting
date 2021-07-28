@@ -6,6 +6,7 @@
 @section('content')
     <!--BEGIN content-->
     <style>
+
         .layout_btns {
             display: flex;
             justify-content: space-between;
@@ -21,11 +22,11 @@
             <div class="breadcrumbs-top float-md-right">
                 <div class="breadcrumb-wrapper mr-1">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{route('student.create')}}">Home</a>
+                        <li class="breadcrumb-item"><a href="{{route('account.create')}}">Home</a>
                         </li>
-                        <li class="breadcrumb-item"><a href="{{route('student.index')}}">List</a>
+                        <li class="breadcrumb-item"><a href="{{route('account.index')}}">List</a>
                         </li>
-                    </ol>
+                    </ol> 
                 </div>
             </div>
         </div>
@@ -36,25 +37,14 @@
             <div class="row match-height justify-content-center">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header" style="height: 50px;">
+                        <div class="card-header" >
                             <div class="card-title layout_btns" id="basic-layout-form">
                                 <h3>List</h3>
 
                                 <div class="btns-right-side">
-                                    <a href="{{ route('student.create') }}" method="post"
-                                        class="btn mr-1 mb-1 btn-success btn-sm" type="submit">Add</a>
-                                         <a href="{{ route('student.importexport') }}" method="post"
-                                        class="btn mr-1 mb-1 btn-success btn-sm" type="submit">Import</a>
-                                        <a class="btn mr-1 mb-1 btn-success btn-sm" href="{{ route('export') }}">Export Bulk Data</a>
-                                <a href="{{ route('student.restore_view') }}" method="post"
-                                    class="btn mr-1 mb-1 btn-danger btn-sm" type="submit">Restore Deleted values</a>
-                                @if ($cruds > 0)
-                                    <button type="button" id="deleteTrigger"
-                                        class="btn mr-1 mb-1 btn-danger btn-sm">Delete</button>
-                                @endif
-
-                                </div>
-                            </div>
+                                    
+                                        
+                                 </div>
                         </div>
                         <!--Card Content start-->
                         <div class="card-content collapse show">
@@ -71,50 +61,47 @@
                                 @endif
 
                                 <div class="table-responsive">
-                                    <form class="form" action="{{route('student.multi-delete')}}" method="POST" id="{{'delete_all'}}">
-                                        @csrf
+                                     {{-- <form class="form" action="{{route('computers.multi-delete')}}" method="POST" id="{{'delete_all'}}">
+                                        @csrf --}}
                                         <div style="overflow:auto">
                                         <table class="table table-striped table-bordered zero-configuration" id="details"
                                             style="width: 100%; display: table;">
                                             <thead>
                                                 <tr>
-                                            <th><input type="checkbox" name="" class="checkboxes" id="checkAll" />
-                                            </th>
-
-                                                    <th>Student Name</th>
-                                                    <th>Father Name</th>
-                                                    <th>Mother Name</th>
-                                                    <th>Email</th>
-                                                    <th>Date of Birth</th>
-                                                    <th>Education</th>
-                                                    <th>Country</th>
-                                                    <th>Image</th>
-                                                    <th>Address</th>
-                                                    <th>Action</th>
+    {{-- <th><input type="checkbox" name="" class="checkboxes" id="checkAll" /> </th> --}}                                        
+                                                    <th>id</th>
+                                                    <th>Name</th>
+                                                    <th>Tax</th>
+                                                    <th>Description</th>
+                                                    <th>sale_price</th>
+                                                    <th>purchase_price</th>
+                                                    <th>category</th>
+                                                    <th>Picture</th>
+                                                    <th>Enabled</th>
+                                                     <th>Action</th> 
                                                 </tr>
                                             </thead>
                                             <tbody>
-
+                                              
                                             </tbody>
                                             <tfoot>
                                                 <tr>
-                                                    <th><input type="checkbox" name="" class="checkboxes" id="checkAll" />
-                                                    </th>
-                                                    <th> Student Name</th>
-                                                    <th>Father Name</th>
-                                                    <th>Mother Name</th>
-                                                    <th>Email</th>
-                                                    <th>Date of birth</th>
-                                                    <th>Education</th>
-                                                    <th>Country</th>
-                                                    <th>Image</th>
-                                                    <th>Address</th>
-                                                    <th>Action</th>
+        {{-- <th><input type="checkbox" name="" class="checkboxes" id="checkAll" /> </th> --}}
+                                                    <th>id</th>
+                                                    <th>Name</th>
+                                                    <th>Tax</th>
+                                                    <th>Description</th>
+                                                    <th>sale_price</th>
+                                                    <th>purchase_price</th>
+                                                    <th>category</th>
+                                                    <th>Picture</th>
+                                                    <th>Enabled</th>
+                                                    <th>Action</th>  
                                                 </tr>
                                             </tfoot>
                                         </table>
                                         </div>
-                                    </form>
+                                    </form>  
                                 </div>
                             </div>
                         </div>
@@ -135,55 +122,48 @@
         $(document).ready(function() {
             // Data table for serverside
             $('#details').DataTable({
-                "pageLength": 25,
-                "aaSorting": [
-                    [1, 'desc']
-                ],
+                "pageLength": 10,
                 "order":[
-                    [1,'desc']
+                    [0,'desc']
             ],
                 
                 "processing": true,
                 "serverSide": true,
                 "ajax": {
-                    "url": "{{ route('get.student_details') }}",
+                    "url": "{{ route('get.account_details') }}",
                     "dataType": "json",
                     "type": "POST",
                     "data": {
                         _token: "{{ csrf_token() }}",
-                        route: '{{ route('student.index') }}'
+                        route: '{{ route('account.index') }}'
                     }
                 },
-                "columns": [
-                    {
-                       "data":"#"
+                "columns": [{
+                        "data": "id"
                     },
                     {
-                        "data": "studentname"
+                        "data": "name"
                     },
                     {
-                        "data": "fathername"
+                        "data": "tax"
                     },
                     {
-                        "data": "mothername"
+                        "data": "description"
                     },
                     {
-                        "data":"email"
+                        "data":"sale_price"
                     },
                     {
-                        "data":"date"
+                        "data":"purchase_price"
                     },
                     {
-                        "data": "education"
+                        "data": "category"
                     },
                     {
-                        "data":"country"
+                        "data": "picture"
                     },
                     {
-                        "data": "image"
-                    },
-                    {
-                        "data": "address"
+                        "data":"enabled"
                     },
                     {
                         "data": "action"

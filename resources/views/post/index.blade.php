@@ -11,7 +11,6 @@
             justify-content: space-between;
             margin-bottom: 10px;
         }
-
     </style>
     <div class="row">
         <div class="content-header-left col-md-4 col-12 mb-2">
@@ -21,9 +20,11 @@
             <div class="breadcrumbs-top float-md-right">
                 <div class="breadcrumb-wrapper mr-1">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{route('student.index')}}">List</a>
+                        <li class="breadcrumb-item"><a href="{{route('post.create')}}">Home</a>
                         </li>
-                    </ol>
+                        <li class="breadcrumb-item"><a href="{{route('post.index')}}">List</a>
+                        </li>
+                    </ol> 
                 </div>
             </div>
         </div>
@@ -34,20 +35,13 @@
             <div class="row match-height justify-content-center">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header" style="height: 50px;">
+                        <div class="card-header" >
                             <div class="card-title layout_btns" id="basic-layout-form">
                                 <h3>List</h3>
 
                                 <div class="btns-right-side">
-                                    <a href="{{ route('student.index') }}" method="post"
-                                        class="btn mr-1 mb-1 btn-success btn-sm" type="submit">List</a>
-                                @if ($crud > 0)
-                                    <button type="button" id="restoreTrigger"
-                                        class="btn mr-1 mb-1 btn-danger btn-sm">Restore all values</button>
-                                @endif
-
-                                </div>
-                            </div>
+                                           
+                                 </div>
                         </div>
                         <!--Card Content start-->
                         <div class="card-content collapse show">
@@ -64,45 +58,39 @@
                                 @endif
 
                                 <div class="table-responsive">
-                                    <form class="form" action="{{route('student.multi-restore')}}" method="POST" id="{{'restore_all'}}">
-                                        @csrf
+                                     {{-- <form class="form" action="{{route('computers.multi-delete')}}" method="POST" id="{{'delete_all'}}">
+                                        @csrf --}}
+                                        <div style="overflow:auto">
                                         <table class="table table-striped table-bordered zero-configuration" id="details"
-                                            style="width: 50%; display: table;">
+                                            style="width: 100%; display: table;">
                                             <thead>
                                                 <tr>
-                                            <th><input type="checkbox" name="" class="checkboxes" id="checkAll" />
-                                            </th>
-
-                                            <th> Student Name</th>
-                                            <th>Father Name</th>
-                                            <th>Mother Name</th>
-                                            <th>Email</th>
-                                            <th>Date</th>
-                                            <th>Education</th>
-                                            <th>Country</th>
-                                            <th>Image</th>
-                                            <th>Address</th>
-                                            <th>Action</th>
+    {{-- <th><input type="checkbox" name="" class="checkboxes" id="checkAll" /> </th> --}}                                        
+                                                    <th>id</th>
+                                                    <th>Title</th>
+                                                    <th>Description</th>
+                                                    <th>Picture</th>
+                                                    <th>States</th>
+                                                    <th>Action</th> 
                                                 </tr>
                                             </thead>
+                                            <tbody>
+                                              
+                                            </tbody>
                                             <tfoot>
                                                 <tr>
-                                                    <th><input type="checkbox" name="" class="checkboxes" id="checkAll" />
-                                                    </th>
-                                                    <th> Student Name</th>
-                                                    <th>Father Name</th>
-                                                    <th>Mother Name</th>
-                                                    <th>Email</th>
-                                                    <th>Date</th>
-                                                    <th>Education</th>
-                                                    <th>Country</th>
-                                                    <th>Image</th>
-                                                    <th>Address</th>
-                                                    <th>Action</th>
+        {{-- <th><input type="checkbox" name="" class="checkboxes" id="checkAll" /> </th> --}}
+                                                    <th>id</th>
+                                                    <th>Title</th>
+                                                    <th>Description</th>
+                                                    <th>Picture</th>
+                                                    <th>States</th>
+                                                    <th>Action</th> 
                                                 </tr>
                                             </tfoot>
                                         </table>
-                                    </form>
+                                        </div>
+                                    </form>  
                                 </div>
                             </div>
                         </div>
@@ -116,67 +104,47 @@
     <script src="{{ asset('app-assets/vendors/js/tables/datatable/datatables.min.js') }}" type="text/javascript">
     </script>
     <!-- BEGIN: Page Vendor JS-->
-    <script src="https://unpkg.com/promise-polyfill" type="text/javascript"></script>
+    <script src="{{asset('https://unpkg.com/promise-polyfill')}}" type="text/javascript"></script>
     <script src="{{ asset('app-assets/vendors/js/extensions/sweetalert2.all.js') }}" type="text/javascript"></script>
     <!-- END: Page Vendor JS-->
     <script>
         $(document).ready(function() {
             // Data table for serverside
             $('#details').DataTable({
-                "pageLength": 25,
-                "aaSorting": [
-                    [1, 'desc']
-                ],
+                "pageLength": 10,
                 "order":[
-                    [1,'desc']
+                    [0,'desc']
             ],
                 
                 "processing": true,
                 "serverSide": true,
                 "ajax": {
-                    "url": "{{ route('get.deleted_values') }}",
+                    "url": "{{ route('get.post_details') }}",
                     "dataType": "json",
                     "type": "POST",
                     "data": {
                         _token: "{{ csrf_token() }}",
-                        route: '{{ route('student.restore_view') }}'
+                         route: '{{ route('post.index') }}'
                     }
                 },
-                "columns": [
-                    {
-                       "data":"#"
+                "columns": [{
+                        "data": "id"
                     },
                     {
-                        "data": "studentname"
+                        "data": "title"
                     },
                     {
-                        "data": "fathername"
+                        "data": "description"
                     },
                     {
-                        "data": "mothername"
+                        "data": "picture"
                     },
                     {
-                        "data":"email"
-                    },
-                    {
-                        "data":"date"
-                    },
-                    {
-                        "data": "education"
-                    },
-                    {
-                        "data":"country"
-                    },
-                    {
-                        "data": "image"
-                    },
-                    {
-                        "data": "address"
+                        "data":"states"
                     },
                     {
                         "data": "action"
                     }
-                    
                 ],
                 aoColumnDefs: [{
                     bSortable: false,
